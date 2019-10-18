@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import {Link} from 'react-router-dom'
 import House from '../House/House'
+import { connect } from 'react-redux';
+import { getHouses } from '../../redux/inputsReducer'
 
 
 class Dashboard extends Component {
@@ -14,31 +15,24 @@ class Dashboard extends Component {
     }
 
     componentDidMount(){
-        this.getHouses()
+        console.log('hit')
+        console.log(this.props.getHouses)
+        this.props.getHouses()
+        console.log('slap')
     }
 
-    getHouses(){
-        axios.get('/api/houses').then(res => {
-            this.setState({
-                houses: res.data
-            })
-        })
-        .catch(err => console.log('getHouses', err))
-
+    componentDidUpdate(prepProps){
+        if(this.prevProps !== this.props) {
+            this.render()
+        }
     }
-
-    // grabHouse = (data) => {
-    //     this.setState({
-    //         houses: data
-    //     })
-    // }
 
     deleteHouse = (id) => {
-
+        ////
     } 
 
     render(){
-        
+        console.log(this.props)
         const houseList = this.state.houses.map((e,i) => {
             return <House data={e} key={i} />
         })
@@ -55,4 +49,10 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard ;
+function mapStateToProps(state){
+    return {
+        inputsReducer: state.inputsReducer
+    }
+}
+
+export default connect(mapStateToProps, {getHouses})(Dashboard) ;

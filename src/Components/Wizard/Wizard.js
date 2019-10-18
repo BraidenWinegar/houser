@@ -1,24 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
-
 import wizroutes from './wizroutes'
 
 
-class Wizard extends Component {
-    constructor(){
-        super();
-
-        this.state = {
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zip: 0
-        }
-    }
-
-    
+class Wizard extends Component {    
 
     postNewHouse = () => {
         // const {name, address, city, state, zip} = this.state
@@ -30,7 +15,6 @@ class Wizard extends Component {
     }
 
     render(){
-        let {name, address, city, state, zip} = this.state;
         return(
             <div>
                 <div>

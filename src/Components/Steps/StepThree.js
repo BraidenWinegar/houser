@@ -8,7 +8,7 @@ class StepTwo extends React.Component {
 
         this.state = {
             mortgage: 0,
-            rent: 0
+            rent: 0, 
         }
     }
 
@@ -22,14 +22,16 @@ class StepTwo extends React.Component {
     render(){
         return(
             <div>
-                <h3>State</h3>
+                <h2>Recommended Rent: ${this.state.mortgage * 1.25}</h2>
+                <h3>Monthly Mortgage:</h3>
                 <input
-                    name="state"
-                    // value={state}
-                    placeholder="Enter State"
+                    type="number"
+                    name="mortgage"
+                    // value={mortgage}
+                    placeholder={0}
                     onChange={e => this.handleInput(e)}
                 />
-                <h3>Desired Monthly Rent</h3>
+                <h3>Desired Monthly Rent:</h3>
                 <input
                     type="number"
                     name="rent"

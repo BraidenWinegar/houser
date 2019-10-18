@@ -36,14 +36,15 @@ export const clearInputs = () => {
     }
 }
 
-// export const getHouses = () => {
-//     let data = axios.get('/api/houses', inputs)
-//     .then(res = res.data)
-//     return{
-//         type: GET_HOUSES,
-//         payload: data
-//     }
-// }
+export const getHouses = () => {
+    let data = axios.get('/api/houses')
+    .then(res => res.data)
+    .catch(err => console.log('getHouses', err))
+    return{
+        type: GET_HOUSES,
+        payload: data
+    }
+}
 
 
 export default function (state = initialState, action) {
@@ -55,8 +56,8 @@ export default function (state = initialState, action) {
             return {...state, inputs: payload}
         case SAVE_INPUTS_TO_DB + "_FULFILLED":
             return {...state}
-        // case GET_HOUSES + "_FULFILLED":
-        //     return {...state, output: payload}
+        case GET_HOUSES + "_FULFILLED":
+            return {...state, output: payload}
         default:
             return state
     }

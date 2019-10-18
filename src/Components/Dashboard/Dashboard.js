@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getHouses } from '../../redux/inputsReducer'
 
 
+
 class Dashboard extends Component {
     constructor(){
         super();
@@ -15,16 +16,16 @@ class Dashboard extends Component {
     }
 
     componentDidMount(){
-        console.log('hit')
-        console.log(this.props.getHouses)
         this.props.getHouses()
-        console.log('slap')
+        console.log('mount', this.props.inputsReducer.output)
+        this.setState({
+            houses: this.props.inputsReducer.output
+        })
     }
 
     componentDidUpdate(prepProps){
-        if(this.prevProps !== this.props) {
-            this.render()
-        }
+        
+        // console.log(this.props.inputsReducer.output)
     }
 
     deleteHouse = (id) => {
@@ -32,7 +33,8 @@ class Dashboard extends Component {
     } 
 
     render(){
-        console.log(this.props)
+        // console.log('render', this.props.inputsReducer)
+
         const houseList = this.state.houses.map((e,i) => {
             return <House data={e} key={i} />
         })
